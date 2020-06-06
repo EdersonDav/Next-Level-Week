@@ -6,9 +6,9 @@ import { useFonts } from '@use-expo/font';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
+    'Roboto-Regular': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
     'Ubuntu-Bold': require('./assets/fonts/Ubuntu/Ubuntu-Bold.ttf'),
     'Ubuntu-Regular': require('./assets/fonts/Ubuntu/Ubuntu-Regular.ttf'),
-    'Roboto-Regular': require('./assets/fonts/Roboto/Roboto-Regular.ttf')
   });
   if (!fontsLoaded) {
     return <AppLoading />
