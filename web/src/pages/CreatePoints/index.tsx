@@ -8,9 +8,11 @@ import { Map, TileLayer, Marker } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
 import api from '../../services/api';
 import axios from 'axios';
+import Dropzone from '../../Components/Dropzone';
 
 const CreatePoint = () => {
 
+  const [selectedFile, setselectedFile] = useState<File>();
   //Criando um estado
   //Sempre quando é criado um state para um array ou objeto, é necessarior informar o tipo da variavel
   //Informando os tipos das variaveis atraves de uma interface
@@ -39,6 +41,7 @@ const CreatePoint = () => {
   const [ufs, setUfs] = useState<string[]>([]);
   //state para armazenar o meu uf
   const [selectedUF, setselectedUF] = useState('0');
+
 
   useEffect(() => {
     axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
@@ -152,9 +155,20 @@ const CreatePoint = () => {
 
     const items = selectedItem;
 
-    const data = {
-      name, email, whatsapp, uf, city, latitude, longitude, items
+    const data = new FormData();
+    data.append('name', name);
+    data.append('email', email);
+    data.append('whatsapp', whatsapp);
+    data.append('uf', uf);
+    data.append('city', city);
+    data.append('latitude', String(latitude));
+    data.append('longitude', String(longitude));
+    data.append('items', items.join(','));
+
+    if (selectedFile) {
+      data.append('image', selectedFile);
     }
+
     await api.post('points', data);
     alert('sucess');
     console.log(data);
@@ -175,6 +189,7 @@ const CreatePoint = () => {
 
       <form onSubmit={handleSubmit}>
         <h1>Cadastro do <br /> ponto de coleta</h1>
+        <Dropzone onFileLoad={setselectedFile} />
         <fieldset>
           <legend>
             <h2>Dados</h2>

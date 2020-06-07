@@ -15,8 +15,15 @@ class PointsControllers {
       .distinct()
       .select('points.*')
 
+    const serializedPoints = points.map(point => {
+      return {
+        ...point,
+        //item_url: `http://localhost:3333/uploads/${item.image}`
+        item_url: `http://---/uploads/${point.image}`
+      }
+    })
 
-    return response.json(points);
+    return response.json(serializedPoints);
 
   }
 
@@ -28,12 +35,18 @@ class PointsControllers {
     if (!point) {
       return response.status(400).json({ message: 'Point not found.' });
     };
+    const serializedPoint = {
+      ...point,
+      //item_url: `http://localhost:3333/uploads/${item.image}`
+      item_url: `http://---/uploads/${point.image}`
+
+    }
 
     const items = await knex('items')
       .join('points_items', 'items.id', '=', 'points_items.items_id')
       .where('points_items.point_id', id).select('items.title');
 
-    return response.json({ point, items });
+    return response.json({ point: serializedPoint, items });
   }
 
   async create(request: Request, response: Response) {
@@ -51,7 +64,7 @@ class PointsControllers {
     //como está sendo feito 2 inserts e um depende do outro, vamos utilizar a transaction
     const trx = await knex.transaction();
     const point = {
-      image: 'https://images.unsplash.com/photo-1556767576-5ec41e3239ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
+      image: request.file.filename,
       name,
       email,
       whatsapp,
@@ -61,13 +74,18 @@ class PointsControllers {
       uf
     };
     const insertedIds = await trx('points').insert(point);
+
     const point_id = insertedIds[0];
-    const pointItems = items.map((items_id: number) => {
-      return {
-        items_id,
-        point_id
-      };
-    })
+
+    const pointItems = items
+      .split(',')
+      .map((item: String) => Number(item.trim()))
+      .map((items_id: number) => {
+        return {
+          items_id,
+          point_id
+        };
+      })
 
     await trx('points_items').insert(pointItems);
     await trx.commit()
