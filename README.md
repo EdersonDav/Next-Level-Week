@@ -13,10 +13,9 @@
   <br><br>
 </p>
 <p align="center">
-  <img alt="resultado" title="#resultado" width="300px" src=".github/gif.gif">
-  <img src=".github/mobileImage01.jpeg" alt="mobileImage">
-  <img src=".github/mobileImage02.jpeg" alt="mobileImage">
-
+  <img alt="resultado" title="#resultado"  src=".github/gif.gif">
+  <img src=".github/mobileImage01.jpeg" width="300px" alt="mobileImage"> 
+  <img src=".github/mobileImage02.jpeg" width="300px" alt="mobileImage">
 </p>
 <h2>Sobre 📜</h2>
 Ecoleta é uma aplicação Web e Mobile para ajudar pessoas a encontrarem pontos de coleta de materiais para reciclagem.
@@ -24,7 +23,8 @@ Ecoleta é uma aplicação Web e Mobile para ajudar pessoas a encontrarem pontos
 Essa aplicação foi construída na trilha Booster da Next Level Week distribuída pela [Rocketseat](https://rocketseat.com.br/).
 
 <h1>Tecnologias Utilizadas 💻</h1>
-- [TypeScript](https://www.typescriptlang.org/)
+
+-[TypeScript](https://www.typescriptlang.org/)
 - [Node.js](https://nodejs.org/en/)
 - [ReactJS](https://reactjs.org/)
 - [React Native](https://reactnative.dev/)
@@ -64,7 +64,7 @@ Essa aplicação foi construída na trilha Booster da Next Level Week distribuí
   # Inicie a aplicação mobile
   $ cd mobile
   $ npm start
-
+```
   ## :mortar_board: Quem ministrou?
 
 As aulas foram ministradas pelo mestre **[Diego Fernandes](https://github.com/diego3g)** nas aulas da **Next Level Week**.
