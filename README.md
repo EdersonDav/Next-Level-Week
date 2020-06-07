@@ -40,7 +40,7 @@ Essa aplicação foi construída na trilha Booster da Next Level Week distribuí
 1. Faça um clone :
 
 ```sh
-  $ git clone https://github.com/vitorserrano/ecoleta.git
+  $ git clone https://github.com/EdersonDav/Next-Level-Week
 ```
 
 2. Executando a Aplicação:
