@@ -24,7 +24,7 @@ Essa aplicação foi construída na trilha Booster da Next Level Week distribuí
 
 <h1>Tecnologias Utilizadas 💻</h1>
 
--[TypeScript](https://www.typescriptlang.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Node.js](https://nodejs.org/en/)
 - [ReactJS](https://reactjs.org/)
 - [React Native](https://reactnative.dev/)
